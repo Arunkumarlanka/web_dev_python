@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}prediction{% endblock title %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction - Your Website Name</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+
+
+<!-- Prediction Section -->
+<section class="prediction-section">
+  <div class="container">
+    <h2 class="prediction-heading">Get Insurance Premium Prediction</h2>
+    
+    <br>
+      {% if output %}
+      <h2>Insurance : {{output}}</h2>  
+      {% endif %}
+    <br>
+
+    <form method="post",action="/prediction">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="age">Enter Age:</label>
+        <input type="number" name="age" class="form-control" id="age" placeholder="Enter Age">
+      </div>
+      
+      <div class="form-group">
+        <label for="bmi">Enter BMI:</label>
+        <input type="number" naame="bmi" class="form-control" id="bmi" placeholder="Enter BMI">
+      </div>
+      
+      <div class="form-group">
+        <label for="sex">Select Sex:</label>
+        <select class="form-control" id="sex" name="sex">
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="children">Enter Number of Children:</label>
+        <input type="number" name="children" class="form-control" id="children" placeholder="Enter Number of Children">
+      </div>
+      
+      <div class="form-group">
+        <label for="smoker">Are You a Smoker?</label>
+        <select class="form-control" id="smoker" name="smoker">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      
+      <div class="form-group"> 
+        <label for="region">Select Region:</label>
+        <select name="region" class="form-control" id="region">
+          <option value="1">Southwest</option>
+          <option value="2">Northeast</option>
+          <option value="3">Southeast</option>
+          <option value="4">Northwest</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-warning">Predict</button>
+    </form>
+  </div>
+</section>
+
+
+ 
+<hr>
+
+{% endblock body %}
+
+
+
